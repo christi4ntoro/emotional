@@ -1,0 +1,1110 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Emotional Design</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;800&display=swap" rel="stylesheet">
+  <!-- STYLES   -->
+  <style>
+    body {
+      font-family: "Poppins", sans-serif;
+      font-weight: 300;
+      font-style: normal;
+      background-color: #fbfafc;
+    }
+
+    .poppins-light {
+      font-family: "Poppins", sans-serif;
+      font-weight: 300;
+      font-style: normal;
+    }
+
+    .poppins-extrabold {
+      font-family: "Poppins", sans-serif;
+      font-weight: 800;
+      font-style: normal;
+    }
+
+    @media (min-width: 1400px) {
+      .container {
+        max-width: 800px;
+      }
+    }
+
+    @media (min-width: 1200px) {
+      .container {
+        max-width: 800px;
+      }
+    }
+
+    @media (min-width: 992px) {
+      .container {
+        max-width: 800px;
+      }
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      color: #503382;
+      margin-bottom: 1.5rem;
+    }
+
+    hr {
+      margin: 1.5rem 0;
+      color: #503382;
+      border: 0;
+      border-top: 0.5rem solid;
+      opacity: .25;
+    }
+
+    .form-container {
+      width: 100%;
+      margin: 3rem 0;
+      background-color: #fff;
+      border-top: 8px solid #503382;
+      border-radius: 8px;
+      box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.1);
+      box-sizing: border-box;
+      padding: 2rem 3rem 3rem;
+    }
+
+    .video-container {
+      position: relative;
+      padding-bottom: 56.25%;
+      /* 16:9 */
+      height: 0;
+      overflow: hidden;
+      margin-bottom: 20px;
+      border-radius: 20px;
+    }
+
+    .video-container iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    .input-placeholder {
+      font-size: larger;
+      border: none;
+      border: 2px solid white;
+      border-bottom: 2px solid #b5bfd9;
+      margin-bottom: 1rem;
+      padding: 0.2rem 1rem;
+      width: 100%;
+    }
+
+    .input-placeholder:focus {
+      outline: none !important;
+      border: 2px #12c8ce solid;
+      border-radius: 0.5rem;
+      border: 2px solid #b5bfd9;
+    }
+
+    .next {
+      background-color: #503382 !important;
+      width: 100%;
+      padding: 0.5rem;
+
+      margin-top: 2.5rem;
+    }
+
+    .next .disabled,
+    .next:disabled,
+    fieldset:disabled .next {
+      opacity: 0.5;
+      border-color: #503382 !important;
+    }
+
+    .slider {
+      -webkit-appearance: none;
+      width: 100%;
+      height: 15px;
+      border-radius: 30px;
+      background: #e1dce4;
+      outline: none;
+      opacity: 0.7;
+      -webkit-transition: opacity .15s ease-in-out;
+      transition: opacity .15s ease-in-out;
+    }
+
+    .slider:hover {
+      opacity: 1;
+    }
+
+    .slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 25px;
+      height: 25px;
+      border-radius: 50%;
+      background: #12c8ce;
+      cursor: pointer;
+    }
+
+    .slider::-moz-range-thumb {
+      width: 25px;
+      height: 25px;
+      border: 0;
+      border-radius: 50%;
+      background: #12c8ce;
+      cursor: pointer;
+    }
+
+    /* CheckBox */
+    .checkbox-group {
+      display: flex;
+      justify-content: center;
+      width: 100%;
+      margin-left: auto;
+      margin-right: auto;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+
+    .checkbox-group>* {
+      margin: 0.5rem 0.5rem;
+    }
+
+    .checkbox-group-legend {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #9c9c9c;
+      text-align: center;
+      line-height: 1.125;
+      margin-bottom: 1.25rem;
+    }
+
+    .checkbox-input {
+      clip: rect(0 0 0 0);
+      -webkit-clip-path: inset(100%);
+      clip-path: inset(100%);
+      height: 1px;
+      overflow: hidden;
+      position: absolute;
+      white-space: nowrap;
+      width: 1px;
+    }
+
+    .checkbox-input:checked+.checkbox-tile {
+      border-color: #12c8ce;
+      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+      color: #12c8ce;
+    }
+
+    .checkbox-input:checked+.checkbox-tile:before {
+      transform: scale(1);
+      opacity: 1;
+      background-color: #12c8ce;
+      border-color: #12c8ce;
+    }
+
+    .checkbox-input:checked+.checkbox-tile .checkbox-icon,
+    .checkbox-input:checked+.checkbox-tile .checkbox-label {
+      color: #0e9498;
+    }
+
+    .checkbox-input:focus+.checkbox-tile {
+      border-color: #12c8ce;
+      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1), 0 0 0 4px #b5c9fc;
+    }
+
+    .checkbox-input:focus+.checkbox-tile:before {
+      transform: scale(1);
+      opacity: 1;
+    }
+
+    .checkbox-wrapper {
+      width: 100%;
+    }
+
+    .checkbox-wrapper.w50 {
+      width: 50%;
+    }
+
+    .checkbox-tile {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      min-height: 2.5rem;
+      border-radius: 0.5rem;
+      border: 2px solid #b5bfd9;
+      background-color: #fff;
+      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+      transition: 0.15s ease;
+      cursor: pointer;
+      position: relative;
+    }
+
+    .checkbox-tile.left {
+      align-items: start;
+      padding-left: 2.5rem;
+    }
+
+    .checkbox-tile:before {
+      content: "";
+      position: absolute;
+      display: block;
+      width: 1.25rem;
+      height: 1.25rem;
+      border: 2px solid #b5bfd9;
+      background-color: #fff;
+      border-radius: 50%;
+      top: calc(50% - 0.625rem);
+      left: 0.5rem;
+      opacity: 0;
+      transform: scale(0);
+      transition: 0.25s ease;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='192' height='192' fill='%23FFFFFF' viewBox='0 0 256 256'%3E%3Crect width='256' height='256' fill='none'%3E%3C/rect%3E%3Cpolyline points='216 72.005 104 184 48 128.005' fill='none' stroke='%23FFFFFF' stroke-linecap='round' stroke-linejoin='round' stroke-width='32'%3E%3C/polyline%3E%3C/svg%3E");
+      background-size: 12px;
+      background-repeat: no-repeat;
+      background-position: 50% 50%;
+    }
+
+    .checkbox-tile:hover {
+      border-color: #12c8ce;
+    }
+
+    .checkbox-tile:hover:before {
+      transform: scale(1);
+      opacity: 1;
+    }
+
+    .checkbox-label {
+      color: #707070;
+      transition: 0.375s ease;
+      text-align: center;
+    }
+
+    .input-field {
+      background-color: #fcf9fd;
+      margin: 1.2rem 0;
+      border-radius: 12px;
+      text-align: center;
+      padding: 1rem;
+    }
+
+    .img-allemojis {
+      width: 100%;
+    }
+
+    p.seen {
+      margin-bottom: 0.4rem;
+    }
+
+    .slider-container {
+      width: 88%;
+      margin: .75rem auto 0;
+    }
+
+    .emo-amount {
+      font-size: 4px;
+      height: 1px !important;
+      opacity: 0;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <!-- INSTRUCTIONS -->
+    <div class="form-container" id="introForm">
+      <h1 class="poppins-extrabold">Emotional Design</h1>
+      <p>In this survey, you will be shown a selection of advertisements. For each advertisement, you will be asked to
+        indicate your feelings using two scales:</p>
+      <ul>
+        <li><span class="poppins-extrabold">Low-Arousal/High-Arousal Scale</span>: Rate your arousal level while viewing
+          the advertisement.</li>
+        <li><span class="poppins-extrabold">Unpleasant/Pleasant Scale</span>: Rate how unpleasant or pleasant you felt
+          while viewing the advertisement.</li>
+      </ul>
+      <img src="https://raw.githubusercontent.com/christi4ntoro/emotional/main/sliders.gif" alt="Arousal Emoji"
+        class="img-allemojis">
+      <br><br>
+      <p>Additionally, if you recognize an advertisement, please indicate that you are familiar with it in the survey.
+      </p>
+      <p>Your responses will provide valuable insights into emotional design and its impact on advertising.</p>
+      <hr>
+      <p class="poppins-extrabold" style="margin-bottom: 0;">Confidentiality</p>
+      <p>Your participation in this survey is voluntary, and all responses will remain anonymous.
+        Personal information will not be shared with anyone. The data collected will only be used for academic purposes
+        and will not be used for any commercial or marketing activities.</p>
+      <div>
+        <input type="text" id="name" name="name" class="input-placeholder" placeholder="Write your name..." required>
+      </div>
+      <div class="checkbox">
+        <label class="checkbox-wrapper">
+          <input type="checkbox" class="checkbox-input" id="terms" name="terms" required />
+          <span class="checkbox-tile left"><span class="checkbox-label">I agree to the terms and
+              conditions.</span></span>
+        </label>
+      </div>
+
+      <button type="button" class="next btn btn-primary" id="nextBtn" onclick="showNextQuestion(1)"
+        disabled>Next</button>
+    </div>
+
+    <!-- Q01 -->
+    <div class="form-container" id="question1" style="display: none;">
+      <h4>Video 1</h4>
+      <div class="video-container">
+        <!-- Replace VIDEO_ID with your YouTube video ID -->
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/LfU83ZJrwyQ" frameborder="0"
+          allowfullscreen></iframe>
+      </div>
+
+      <div class="input-field">
+        <p class="seen">Have you ever seen this video before?</p>
+        <div class="checkbox-group">
+          <label class="checkbox-wrapper w50">
+            <input class="checkbox-input" type="radio" name="video1" value="Yes" required />
+            <span class="checkbox-tile"><span class="checkbox-label">Yes</span></span>
+          </label>
+          <label class="checkbox-wrapper w50">
+            <input class="checkbox-input" type="radio" name="video1" value="No" required />
+            <span class="checkbox-tile"><span class="checkbox-label">No</span></span>
+          </label>
+        </div>
+      </div>
+
+      <!-- SLIDERS 01 -->
+      <div class="input-field">
+        <span class="poppins-extrabold">Arousal</span>
+        <img src="https://raw.githubusercontent.com/christi4ntoro/emotional/main/arousal-emo.png" alt="Arousal Emoji"
+          class="img-allemojis">
+        <div class="slider-container">
+          <input type="range" id="arousal1" name="arousal1" min="0" max="100" value="50" class="slider" required>
+          <span id="arousal1Value" class="emo-amount">50</span>
+        </div>
+      </div>
+
+      <div class="input-field">
+        <span class="poppins-extrabold">Pleasure</span>
+        <img src="https://raw.githubusercontent.com/christi4ntoro/emotional/main/pleasure-emo.png" alt="Pleasure Emoji"
+          class="img-allemojis">
+        <div class="slider-container">
+          <input type="range" id="pleasent1" name="pleasent1" min="0" max="100" value="50" class="slider" required>
+          <span id="pleasent1Value" class="emo-amount">50</span>
+        </div>
+      </div>
+      <!-- // -->
+      <button type="button" class="next btn btn-primary" onclick="showNextQuestion(2)" disabled>Next</button>
+    </div>
+
+    <!-- Q02 -->
+    <div class="form-container" id="question2" style="display: none;">
+      <h3>Video 2</h3>
+      <div class="video-container">
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/fl7hQ6-2Bjc" frameborder="0"
+          allowfullscreen></iframe>
+      </div>
+
+      <div class="input-field">
+        <p class="seen">Have you ever seen this video before?</p>
+        <div class="checkbox-group">
+          <label class="checkbox-wrapper w50">
+            <input class="checkbox-input" type="radio" name="video2" value="Yes" required />
+            <span class="checkbox-tile"><span class="checkbox-label">Yes</span></span>
+          </label>
+          <label class="checkbox-wrapper w50">
+            <input class="checkbox-input" type="radio" name="video2" value="No" required />
+            <span class="checkbox-tile"><span class="checkbox-label">No</span></span>
+          </label>
+        </div>
+      </div>
+
+      <!-- SLIDERS 02 -->
+      <div class="input-field">
+        <span class="poppins-extrabold">Arousal</span>
+        <img src="https://raw.githubusercontent.com/christi4ntoro/emotional/main/arousal-emo.png" alt="Arousal Emoji"
+          class="img-allemojis">
+        <div class="slider-container">
+          <input type="range" id="arousal2" name="arousal2" min="0" max="100" value="50" class="slider" required>
+          <span id="arousal2Value" class="emo-amount">50</span>
+        </div>
+      </div>
+
+      <div class="input-field">
+        <span class="poppins-extrabold">Pleasure</span>
+        <img src="https://raw.githubusercontent.com/christi4ntoro/emotional/main/pleasure-emo.png" alt="Pleasure Emoji"
+          class="img-allemojis">
+        <div class="slider-container">
+          <input type="range" id="pleasent2" name="pleasent2" min="0" max="100" value="50" class="slider" required>
+          <span id="pleasent2Value" class="emo-amount">50</span>
+        </div>
+      </div>
+      <!-- // -->
+
+      <button type="button" class="next btn btn-primary" onclick="showNextQuestion(3)" disabled>Next</button>
+    </div>
+
+    <!-- Q03 -->
+    <div class="form-container" id="question3" style="display: none;">
+      <h3>Video 3</h3>
+      <div class="video-container">
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/SH-dWiU62mY" frameborder="0"
+          allowfullscreen></iframe>
+      </div>
+
+      <div class="input-field">
+        <p class="seen">Have you ever seen this video before?</p>
+        <div class="checkbox-group">
+          <label class="checkbox-wrapper w50">
+            <input class="checkbox-input" type="radio" name="video3" value="Yes" required />
+            <span class="checkbox-tile"><span class="checkbox-label">Yes</span></span>
+          </label>
+          <label class="checkbox-wrapper w50">
+            <input class="checkbox-input" type="radio" name="video3" value="No" required />
+            <span class="checkbox-tile"><span class="checkbox-label">No</span></span>
+          </label>
+        </div>
+      </div>
+
+      <!-- SLIDERS 03 -->
+      <div class="input-field">
+        <span class="poppins-extrabold">Arousal</span>
+        <img src="https://raw.githubusercontent.com/christi4ntoro/emotional/main/arousal-emo.png" alt="Arousal Emoji"
+          class="img-allemojis">
+        <div class="slider-container">
+          <input type="range" id="arousal3" name="arousal3" min="0" max="100" value="50" class="slider" required>
+          <span id="arousal3Value" class="emo-amount">50</span>
+        </div>
+      </div>
+
+      <div class="input-field">
+        <span class="poppins-extrabold">Pleasure</span>
+        <img src="https://raw.githubusercontent.com/christi4ntoro/emotional/main/pleasure-emo.png" alt="Pleasure Emoji"
+          class="img-allemojis">
+        <div class="slider-container">
+          <input type="range" id="pleasent3" name="pleasent3" min="0" max="100" value="50" class="slider" required>
+          <span id="pleasent3Value" class="emo-amount">50</span>
+        </div>
+      </div>
+      <!-- // -->
+
+      <button type="button" class="next btn btn-primary" onclick="showNextQuestion(4)" disabled>Next</button>
+    </div>
+
+    <!-- Q04 -->
+    <div class="form-container" id="question4" style="display: none;">
+      <h3>Video 4</h3>
+      <div class="video-container">
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/f_Auh61aN9Y" frameborder="0"
+          allowfullscreen></iframe>
+      </div>
+
+      <div class="input-field">
+        <p class="seen">Have you ever seen this video before?</p>
+        <div class="checkbox-group">
+          <label class="checkbox-wrapper w50">
+            <input class="checkbox-input" type="radio" name="video4" value="Yes" required />
+            <span class="checkbox-tile"><span class="checkbox-label">Yes</span></span>
+          </label>
+          <label class="checkbox-wrapper w50">
+            <input class="checkbox-input" type="radio" name="video4" value="No" required />
+            <span class="checkbox-tile"><span class="checkbox-label">No</span></span>
+          </label>
+        </div>
+      </div>
+
+      <!-- SLIDERS 04 -->
+      <div class="input-field">
+        <span class="poppins-extrabold">Arousal</span>
+        <img src="https://raw.githubusercontent.com/christi4ntoro/emotional/main/arousal-emo.png" alt="Arousal Emoji"
+          class="img-allemojis">
+        <div class="slider-container">
+          <input type="range" id="arousal4" name="arousal4" min="0" max="100" value="50" class="slider" required>
+          <span id="arousal4Value" class="emo-amount">50</span>
+        </div>
+      </div>
+
+      <div class="input-field">
+        <span class="poppins-extrabold">Pleasure</span>
+        <img src="https://raw.githubusercontent.com/christi4ntoro/emotional/main/pleasure-emo.png" alt="Pleasure Emoji"
+          class="img-allemojis">
+        <div class="slider-container">
+          <input type="range" id="pleasent4" name="pleasent4" min="0" max="100" value="50" class="slider" required>
+          <span id="pleasent4Value" class="emo-amount">50</span>
+        </div>
+      </div>
+      <!-- // -->
+
+      <button type="button" class="next btn btn-primary" onclick="showNextQuestion(5)" disabled>Next</button>
+    </div>
+
+    <!-- Q05 -->
+    <div class="form-container" id="question5" style="display: none;">
+      <h3>Video 5</h3>
+      <div class="video-container">
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/eZgD89VYkVc" frameborder="0"
+          allowfullscreen></iframe>
+      </div>
+
+      <div class="input-field">
+        <p class="seen">Have you ever seen this video before?</p>
+        <div class="checkbox-group">
+          <label class="checkbox-wrapper w50">
+            <input class="checkbox-input" type="radio" name="video5" value="Yes" required />
+            <span class="checkbox-tile"><span class="checkbox-label">Yes</span></span>
+          </label>
+          <label class="checkbox-wrapper w50">
+            <input class="checkbox-input" type="radio" name="video5" value="No" required />
+            <span class="checkbox-tile"><span class="checkbox-label">No</span></span>
+          </label>
+        </div>
+      </div>
+
+      <!-- SLIDERS 05 -->
+      <div class="input-field">
+        <span class="poppins-extrabold">Arousal</span>
+        <img src="https://raw.githubusercontent.com/christi4ntoro/emotional/main/arousal-emo.png" alt="Arousal Emoji"
+          class="img-allemojis">
+        <div class="slider-container">
+          <input type="range" id="arousal5" name="arousal5" min="0" max="100" value="50" class="slider" required>
+          <span id="arousal5Value" class="emo-amount">50</span>
+        </div>
+      </div>
+
+      <div class="input-field">
+        <span class="poppins-extrabold">Pleasure</span>
+        <img src="https://raw.githubusercontent.com/christi4ntoro/emotional/main/pleasure-emo.png" alt="Pleasure Emoji"
+          class="img-allemojis">
+        <div class="slider-container">
+          <input type="range" id="pleasent5" name="pleasent5" min="0" max="100" value="50" class="slider" required>
+          <span id="pleasent5Value" class="emo-amount">50</span>
+        </div>
+      </div>
+      <!-- // -->
+
+      <button type="button" class="next btn btn-primary" onclick="showNextQuestion(6)" disabled>Next</button>
+    </div>
+
+    <!-- Q06 -->
+    <div class="form-container" id="question6" style="display: none;">
+      <h3>Video 6</h3>
+      <div class="video-container">
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/350tD8E7htM" frameborder="0"
+          allowfullscreen></iframe>
+      </div>
+
+      <div class="input-field">
+        <p class="seen">Have you ever seen this video before?</p>
+        <div class="checkbox-group">
+          <label class="checkbox-wrapper w50">
+            <input class="checkbox-input" type="radio" name="video6" value="Yes" required />
+            <span class="checkbox-tile"><span class="checkbox-label">Yes</span></span>
+          </label>
+          <label class="checkbox-wrapper w50">
+            <input class="checkbox-input" type="radio" name="video6" value="No" required />
+            <span class="checkbox-tile"><span class="checkbox-label">No</span></span>
+          </label>
+        </div>
+      </div>
+
+      <!-- SLIDERS 06 -->
+      <div class="input-field">
+        <span class="poppins-extrabold">Arousal</span>
+        <img src="https://raw.githubusercontent.com/christi4ntoro/emotional/main/arousal-emo.png" alt="Arousal Emoji"
+          class="img-allemojis">
+        <div class="slider-container">
+          <input type="range" id="arousal6" name="arousal6" min="0" max="100" value="50" class="slider" required>
+          <span id="arousal6Value" class="emo-amount">50</span>
+        </div>
+      </div>
+
+      <div class="input-field">
+        <span class="poppins-extrabold">Pleasure</span>
+        <img src="https://raw.githubusercontent.com/christi4ntoro/emotional/main/pleasure-emo.png" alt="Pleasure Emoji"
+          class="img-allemojis">
+        <div class="slider-container">
+          <input type="range" id="pleasent6" name="pleasent6" min="0" max="100" value="50" class="slider" required>
+          <span id="pleasent6Value" class="emo-amount">50</span>
+        </div>
+      </div>
+      <!-- // -->
+
+      <button type="button" class="next btn btn-primary" onclick="showNextQuestion(7)" disabled>Next</button>
+    </div>
+
+    <!-- Q07 -->
+    <div class="form-container" id="question7" style="display: none;">
+      <h3>Video 7</h3>
+      <div class="video-container">
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/HRZ2uccNVfo" frameborder="0"
+          allowfullscreen></iframe>
+      </div>
+
+      <div class="input-field">
+        <p class="seen">Have you ever seen this video before?</p>
+        <div class="checkbox-group">
+          <label class="checkbox-wrapper w50">
+            <input class="checkbox-input" type="radio" name="video7" value="Yes" required />
+            <span class="checkbox-tile"><span class="checkbox-label">Yes</span></span>
+          </label>
+          <label class="checkbox-wrapper w50">
+            <input class="checkbox-input" type="radio" name="video7" value="No" required />
+            <span class="checkbox-tile"><span class="checkbox-label">No</span></span>
+          </label>
+        </div>
+      </div>
+
+      <!-- SLIDERS 07 -->
+      <div class="input-field">
+        <span class="poppins-extrabold">Arousal</span>
+        <img src="https://raw.githubusercontent.com/christi4ntoro/emotional/main/arousal-emo.png" alt="Arousal Emoji"
+          class="img-allemojis">
+        <div class="slider-container">
+          <input type="range" id="arousal7" name="arousal7" min="0" max="100" value="50" class="slider" required>
+          <span id="arousal7Value" class="emo-amount">50</span>
+        </div>
+      </div>
+
+      <div class="input-field">
+        <span class="poppins-extrabold">Pleasure</span>
+        <img src="https://raw.githubusercontent.com/christi4ntoro/emotional/main/pleasure-emo.png" alt="Pleasure Emoji"
+          class="img-allemojis">
+        <div class="slider-container">
+          <input type="range" id="pleasent7" name="pleasent7" min="0" max="100" value="50" class="slider" required>
+          <span id="pleasent7Value" class="emo-amount">50</span>
+        </div>
+      </div>
+      <!-- // -->
+
+      <button type="button" class="next btn btn-primary" onclick="showNextQuestion(8)" disabled>Next</button>
+    </div>
+
+    <!-- Q08 -->
+    <div class="form-container" id="question8" style="display: none;">
+      <h3>Video 8</h3>
+      <div class="video-container">
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/g5dPgkrpDK0" frameborder="0"
+          allowfullscreen></iframe>
+      </div>
+
+      <div class="input-field">
+        <p class="seen">Have you ever seen this video before?</p>
+        <div class="checkbox-group">
+          <label class="checkbox-wrapper w50">
+            <input class="checkbox-input" type="radio" name="video8" value="Yes" required />
+            <span class="checkbox-tile"><span class="checkbox-label">Yes</span></span>
+          </label>
+          <label class="checkbox-wrapper w50">
+            <input class="checkbox-input" type="radio" name="video8" value="No" required />
+            <span class="checkbox-tile"><span class="checkbox-label">No</span></span>
+          </label>
+        </div>
+      </div>
+
+      <!-- SLIDERS 09 -->
+      <div class="input-field">
+        <span class="poppins-extrabold">Arousal</span>
+        <img src="https://raw.githubusercontent.com/christi4ntoro/emotional/main/arousal-emo.png" alt="Arousal Emoji"
+          class="img-allemojis">
+        <div class="slider-container">
+          <input type="range" id="arousal8" name="arousal8" min="0" max="100" value="50" class="slider" required>
+          <span id="arousal8Value" class="emo-amount">50</span>
+        </div>
+      </div>
+
+      <div class="input-field">
+        <span class="poppins-extrabold">Pleasure</span>
+        <img src="https://raw.githubusercontent.com/christi4ntoro/emotional/main/pleasure-emo.png" alt="Pleasure Emoji"
+          class="img-allemojis">
+        <div class="slider-container">
+          <input type="range" id="pleasent8" name="pleasent8" min="0" max="100" value="50" class="slider" required>
+          <span id="pleasent8Value" class="emo-amount">50</span>
+        </div>
+      </div>
+      <!-- // -->
+
+      <button type="button" class="next btn btn-primary" onclick="showNextQuestion(9)" disabled>Next</button>
+    </div>
+
+    <!-- Q09 -->
+    <div class="form-container" id="question9" style="display: none;">
+      <h3>Video 9</h3>
+      <div class="video-container">
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/_8SZA0PVOBo" frameborder="0"
+          allowfullscreen></iframe>
+      </div>
+
+      <div class="input-field">
+        <p class="seen">Have you ever seen this video before?</p>
+        <div class="checkbox-group">
+          <label class="checkbox-wrapper w50">
+            <input class="checkbox-input" type="radio" name="video9" value="Yes" required />
+            <span class="checkbox-tile"><span class="checkbox-label">Yes</span></span>
+          </label>
+          <label class="checkbox-wrapper w50">
+            <input class="checkbox-input" type="radio" name="video9" value="No" required />
+            <span class="checkbox-tile"><span class="checkbox-label">No</span></span>
+          </label>
+        </div>
+      </div>
+
+      <!-- SLIDERS 9 -->
+      <div class="input-field">
+        <span class="poppins-extrabold">Arousal</span>
+        <img src="https://raw.githubusercontent.com/christi4ntoro/emotional/main/arousal-emo.png" alt="Arousal Emoji"
+          class="img-allemojis">
+        <div class="slider-container">
+          <input type="range" id="arousal9" name="arousal9" min="0" max="100" value="50" class="slider" required>
+          <span id="arousal9Value" class="emo-amount">50</span>
+        </div>
+      </div>
+
+      <div class="input-field">
+        <span class="poppins-extrabold">Pleasure</span>
+        <img src="https://raw.githubusercontent.com/christi4ntoro/emotional/main/pleasure-emo.png" alt="Pleasure Emoji"
+          class="img-allemojis">
+        <div class="slider-container">
+          <input type="range" id="pleasent9" name="pleasent9" min="0" max="100" value="50" class="slider" required>
+          <span id="pleasent9Value" class="emo-amount">50</span>
+        </div>
+      </div>
+      <!-- // -->
+
+      <button type="button" class="next btn btn-primary" onclick="showNextQuestion(10)" disabled>Next</button>
+    </div>
+
+    <!-- Q010 -->
+    <div class="form-container" id="question10" style="display: none;">
+      <h3>Video 10</h3>
+      <div class="video-container">
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/s14KvsXKut0" frameborder="0"
+          allowfullscreen></iframe>
+      </div>
+
+      <div class="input-field">
+        <p class="seen">Have you ever seen this video before?</p>
+        <div class="checkbox-group">
+          <label class="checkbox-wrapper w50">
+            <input class="checkbox-input" type="radio" name="video10" value="Yes" required />
+            <span class="checkbox-tile"><span class="checkbox-label">Yes</span></span>
+          </label>
+          <label class="checkbox-wrapper w50">
+            <input class="checkbox-input" type="radio" name="video10" value="No" required />
+            <span class="checkbox-tile"><span class="checkbox-label">No</span></span>
+          </label>
+        </div>
+      </div>
+
+      <!-- SLIDERS 10 -->
+      <div class="input-field">
+        <span class="poppins-extrabold">Arousal</span>
+        <img src="https://raw.githubusercontent.com/christi4ntoro/emotional/main/arousal-emo.png" alt="Arousal Emoji"
+          class="img-allemojis">
+        <div class="slider-container">
+          <input type="range" id="arousal10" name="arousal10" min="0" max="100" value="50" class="slider" required>
+          <span id="arousal10Value" class="emo-amount">50</span>
+        </div>
+      </div>
+
+      <div class="input-field">
+        <span class="poppins-extrabold">Pleasure</span>
+        <img src="https://raw.githubusercontent.com/christi4ntoro/emotional/main/pleasure-emo.png" alt="Pleasure Emoji"
+          class="img-allemojis">
+        <div class="slider-container">
+          <input type="range" id="pleasent10" name="pleasent10" min="0" max="100" value="50" class="slider" required>
+          <span id="pleasent10Value" class="emo-amount">50</span>
+        </div>
+      </div>
+      <!-- // -->
+
+      <!-- Last question -->
+      <button type="button" class="next btn btn-primary" onclick="submitForm()" disabled>Submit</button>
+    </div>
+
+    <!-- Final message -->
+    <div class="form-container" id="thankYouMessage" style="display: none;">
+      <h2>Thank you for your participation!</h2>
+      <p>Your input is important to us and will help us gain a better understanding of emotional responses in
+        advertising.</p>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+    crossorigin="anonymous"></script>
+
+  <script>
+    // Your JavaScript code here
+    var numQuestions = 10;
+    var currentQuestion = 1;
+
+    // Your JavaScript code here
+    document.getElementById('introForm').addEventListener('input', function () {
+      var nameValid = document.getElementById('name').checkValidity();
+      var termsValid = document.getElementById('terms').checkValidity();
+
+      if (nameValid && termsValid) {
+        document.getElementById('nextBtn').disabled = false;
+      } else {
+        document.getElementById('nextBtn').disabled = true;
+      }
+    });
+
+    document.getElementById('question1').addEventListener('input', function () {
+      var video1 = document.querySelector('input[name="video1"]:checked');
+      var arousal1Valid = document.getElementById('arousal1').checkValidity();
+      var pleasent1Valid = document.getElementById('pleasent1').checkValidity();
+
+      if (video1 && arousal1Valid && pleasent1Valid) {
+        document.getElementById('question1').querySelector('.next').disabled = false;
+      } else {
+        document.getElementById('question1').querySelector('.next').disabled = true;
+      }
+    });
+
+    document.getElementById('question2').addEventListener('input', function () {
+      var video2 = document.querySelector('input[name="video2"]:checked');
+      var arousal2Valid = document.getElementById('arousal2').checkValidity();
+      var pleasent2Valid = document.getElementById('pleasent2').checkValidity();
+
+      if (video2 && arousal2Valid && pleasent2Valid) {
+        document.getElementById('question2').querySelector('.next').disabled = false;
+      } else {
+        document.getElementById('question2').querySelector('.next').disabled = true;
+      }
+    });
+
+    document.getElementById('question3').addEventListener('input', function () {
+      var video3 = document.querySelector('input[name="video3"]:checked');
+      var arousal3Valid = document.getElementById('arousal3').checkValidity();
+      var pleasent3Valid = document.getElementById('pleasent3').checkValidity();
+
+      if (video3 && arousal3Valid && pleasent3Valid) {
+        document.getElementById('question3').querySelector('.next').disabled = false;
+      } else {
+        document.getElementById('question3').querySelector('.next').disabled = true;
+      }
+    });
+
+    document.getElementById('question4').addEventListener('input', function () {
+      var video4 = document.querySelector('input[name="video4"]:checked');
+      var arousal4Valid = document.getElementById('arousal4').checkValidity();
+      var pleasent4Valid = document.getElementById('pleasent4').checkValidity();
+
+      if (video4 && arousal4Valid && pleasent4Valid) {
+        document.getElementById('question4').querySelector('.next').disabled = false;
+      } else {
+        document.getElementById('question4').querySelector('.next').disabled = true;
+      }
+    });
+
+    document.getElementById('question5').addEventListener('input', function () {
+      var video5 = document.querySelector('input[name="video5"]:checked');
+      var arousal5Valid = document.getElementById('arousal5').checkValidity();
+      var pleasent5Valid = document.getElementById('pleasent5').checkValidity();
+
+      if (video5 && arousal5Valid && pleasent5Valid) {
+        document.getElementById('question5').querySelector('.next').disabled = false;
+      } else {
+        document.getElementById('question5').querySelector('.next').disabled = true;
+      }
+    });
+
+    document.getElementById('question6').addEventListener('input', function () {
+      var video6 = document.querySelector('input[name="video6"]:checked');
+      var arousal6Valid = document.getElementById('arousal6').checkValidity();
+      var pleasent6Valid = document.getElementById('pleasent6').checkValidity();
+
+      if (video6 && arousal6Valid && pleasent6Valid) {
+        document.getElementById('question6').querySelector('.next').disabled = false;
+      } else {
+        document.getElementById('question6').querySelector('.next').disabled = true;
+      }
+    });
+
+    document.getElementById('question7').addEventListener('input', function () {
+      var video7 = document.querySelector('input[name="video7"]:checked');
+      var arousal7Valid = document.getElementById('arousal7').checkValidity();
+      var pleasent7Valid = document.getElementById('pleasent7').checkValidity();
+
+      if (video7 && arousal7Valid && pleasent7Valid) {
+        document.getElementById('question7').querySelector('.next').disabled = false;
+      } else {
+        document.getElementById('question7').querySelector('.next').disabled = true;
+      }
+    });
+
+    document.getElementById('question8').addEventListener('input', function () {
+      var video8 = document.querySelector('input[name="video8"]:checked');
+      var arousal8Valid = document.getElementById('arousal8').checkValidity();
+      var pleasent8Valid = document.getElementById('pleasent8').checkValidity();
+
+      if (video8 && arousal8Valid && pleasent8Valid) {
+        document.getElementById('question8').querySelector('.next').disabled = false;
+      } else {
+        document.getElementById('question8').querySelector('.next').disabled = true;
+      }
+    });
+
+    document.getElementById('question9').addEventListener('input', function () {
+      var video9 = document.querySelector('input[name="video9"]:checked');
+      var arousal9Valid = document.getElementById('arousal9').checkValidity();
+      var pleasent9Valid = document.getElementById('pleasent9').checkValidity();
+
+      if (video9 && arousal9Valid && pleasent9Valid) {
+        document.getElementById('question9').querySelector('.next').disabled = false;
+      } else {
+        document.getElementById('question9').querySelector('.next').disabled = true;
+      }
+    });
+
+    document.getElementById('question10').addEventListener('input', function () {
+      var video10 = document.querySelector('input[name="video10"]:checked');
+      var arousal10Valid = document.getElementById('arousal10').checkValidity();
+      var pleasent10Valid = document.getElementById('pleasent10').checkValidity();
+
+      if (video10 && arousal10Valid && pleasent10Valid) {
+        document.getElementById('question10').querySelector('.next').disabled = false;
+      } else {
+        document.getElementById('question10').querySelector('.next').disabled = true;
+      }
+    });
+
+    function showNextQuestion(nextQuestion) {
+      document.getElementById('introForm').style.display = 'none'; // Hide introForm
+      document.getElementById('question' + currentQuestion).style.display = 'none';
+      document.getElementById('question' + nextQuestion).style.display = 'block';
+      currentQuestion = nextQuestion;
+    }
+
+    function submitForm() {
+      var name = document.getElementById('name').value;
+      var terms = document.getElementById('terms').checked ? 'Yes' : 'No';
+
+      var video1 = document.querySelector('input[name="video1"]:checked').value;
+      var arousal1Value = document.getElementById('arousal1').value;
+      var pleasent1Value = document.getElementById('pleasent1').value;
+
+      var video2 = document.querySelector('input[name="video2"]:checked').value;
+      var arousal2Value = document.getElementById('arousal2').value;
+      var pleasent2Value = document.getElementById('pleasent2').value;
+
+      var video3 = document.querySelector('input[name="video3"]:checked').value;
+      var arousal3Value = document.getElementById('arousal3').value;
+      var pleasent3Value = document.getElementById('pleasent3').value;
+
+      var video4 = document.querySelector('input[name="video4"]:checked').value;
+      var arousal4Value = document.getElementById('arousal4').value;
+      var pleasent4Value = document.getElementById('pleasent4').value;
+
+      var video5 = document.querySelector('input[name="video5"]:checked').value;
+      var arousal5Value = document.getElementById('arousal5').value;
+      var pleasent5Value = document.getElementById('pleasent5').value;
+
+      var video6 = document.querySelector('input[name="video6"]:checked').value;
+      var arousal6Value = document.getElementById('arousal6').value;
+      var pleasent6Value = document.getElementById('pleasent6').value;
+
+      var video7 = document.querySelector('input[name="video7"]:checked').value;
+      var arousal7Value = document.getElementById('arousal7').value;
+      var pleasent7Value = document.getElementById('pleasent7').value;
+
+      var video8 = document.querySelector('input[name="video8"]:checked').value;
+      var arousal8Value = document.getElementById('arousal8').value;
+      var pleasent8Value = document.getElementById('pleasent8').value;
+
+      var video9 = document.querySelector('input[name="video9"]:checked').value;
+      var arousal9Value = document.getElementById('arousal9').value;
+      var pleasent9Value = document.getElementById('pleasent9').value;
+
+      var video10 = document.querySelector('input[name="video10"]:checked').value;
+      var arousal10Value = document.getElementById('arousal10').value;
+      var pleasent10Value = document.getElementById('pleasent10').value;
+
+      // Send form data to Google Sheets
+      google.script.run.processForm([name, terms, video1, arousal1Value, pleasent1Value, video2, arousal2Value, pleasent2Value, video3, arousal3Value, pleasent3Value, video4, arousal4Value, pleasent4Value, video5, arousal5Value, pleasent5Value, video6, arousal6Value, pleasent6Value, video7, arousal7Value, pleasent7Value, video8, arousal8Value, pleasent8Value, video9, arousal9Value, pleasent9Value, video10, arousal10Value, pleasent10Value]);
+
+      // Hide all question divs and show thank you message
+      for (var i = 1; i <= numQuestions; i++) {
+        document.getElementById('question' + i).style.display = 'none';
+      }
+      document.getElementById('thankYouMessage').style.display = 'block';
+
+      console.log('Form submitted!');
+    }
+
+    // Update slider value display
+    document.getElementById('arousal1').addEventListener('input', function () {
+      document.getElementById('arousal1Value').textContent = this.value;
+    });
+    document.getElementById('pleasent1').addEventListener('input', function () {
+      document.getElementById('pleasent1Value').textContent = this.value;
+    });
+    document.getElementById('arousal2').addEventListener('input', function () {
+      document.getElementById('arousal2Value').textContent = this.value;
+    });
+    document.getElementById('pleasent2').addEventListener('input', function () {
+      document.getElementById('pleasent2Value').textContent = this.value;
+    });
+    document.getElementById('arousal3').addEventListener('input', function () {
+      document.getElementById('arousal3Value').textContent = this.value;
+    });
+    document.getElementById('pleasent3').addEventListener('input', function () {
+      document.getElementById('pleasent3Value').textContent = this.value;
+    });
+    document.getElementById('arousal4').addEventListener('input', function () {
+      document.getElementById('arousal4Value').textContent = this.value;
+    });
+    document.getElementById('pleasent4').addEventListener('input', function () {
+      document.getElementById('pleasent4Value').textContent = this.value;
+    });
+    document.getElementById('arousal5').addEventListener('input', function () {
+      document.getElementById('arousal5Value').textContent = this.value;
+    });
+    document.getElementById('pleasent5').addEventListener('input', function () {
+      document.getElementById('pleasent5Value').textContent = this.value;
+    });
+    document.getElementById('arousal6').addEventListener('input', function () {
+      document.getElementById('arousal6Value').textContent = this.value;
+    });
+    document.getElementById('pleasent6').addEventListener('input', function () {
+      document.getElementById('pleasent6Value').textContent = this.value;
+    });
+    document.getElementById('arousal7').addEventListener('input', function () {
+      document.getElementById('arousal7Value').textContent = this.value;
+    });
+    document.getElementById('pleasent7').addEventListener('input', function () {
+      document.getElementById('pleasent7Value').textContent = this.value;
+    });
+    document.getElementById('arousal8').addEventListener('input', function () {
+      document.getElementById('arousal8Value').textContent = this.value;
+    });
+    document.getElementById('pleasent8').addEventListener('input', function () {
+      document.getElementById('pleasent8Value').textContent = this.value;
+    });
+    document.getElementById('arousal9').addEventListener('input', function () {
+      document.getElementById('arousal9Value').textContent = this.value;
+    });
+    document.getElementById('pleasent9').addEventListener('input', function () {
+      document.getElementById('pleasent9Value').textContent = this.value;
+    });
+    document.getElementById('arousal10').addEventListener('input', function () {
+      document.getElementById('arousal10Value').textContent = this.value;
+    });
+    document.getElementById('pleasent10').addEventListener('input', function () {
+      document.getElementById('pleasent10Value').textContent = this.value;
+    });
+  </script>
+</body>
+
+</html>
